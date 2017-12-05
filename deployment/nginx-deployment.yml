@@ -1,9 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: test-deployment
 spec:
   replicas: 2
   selector:
@@ -13,7 +11,6 @@ spec:
     metadata:
       labels:
         app: nginx
-        tier: nginx-deployment
     spec:
       containers:
       - name: nginx
@@ -25,3 +22,9 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
+        ports:
+        - containerPort: 80
+        readinessProbe:
+            httpGet:
+                path: /
+                port: 80

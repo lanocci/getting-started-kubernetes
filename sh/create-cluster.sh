@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -ex
-gcloud container clusters create test-nginx \
-       --zone us-central1-a \
-       --project your-project \
-       --machine-type g1-small \
-       --num-nodes 2 \
-       --image-type cos \
-       --password password --username user
+gcloud container clusters create test-cluster \
+    --image-type=cos \
+    --machine-type=n1-standard-1 \
+    --preemptible --num-nodes=2 \
+    --zone asia-northeast1-a \
+    --enable-autorepair \
+    --project=${MY_PROJECT}
